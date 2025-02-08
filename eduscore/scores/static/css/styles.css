@@ -1,0 +1,117 @@
+#header {
+    background-color: #87ceeb;
+    color: white;
+    padding: 20px;
+    font-size: 26px;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 3px solid #6495ed;
+}
+
+button {
+    background-color: #5fa9f7;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 15px;
+    font-size: 14px;
+    font-family: "Arial", sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+    background-color: #4682b4;
+    transform: scale(1.05);
+}
+
+/* Sidebar */
+#sidebar {
+    background-color: #f0f8ff;
+    border-right: 1px solid #ddd;
+    padding: 15px;
+    min-height: 100vh;
+}
+
+#sidebar h2 {
+    font-size: 18px;
+    color: #4682b4;
+    font-weight: bold;
+    font-family: "Verdana", sans-serif;
+}
+
+#sidebar ul li a {
+    text-decoration: none;
+    color: #4682b4;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+#sidebar ul li a:hover {
+    color: #5fa9f7;
+}
+
+/* Bảng dữ liệu */
+table th {
+    background-color: #5fa9f7; /* Xanh nhẹ */
+    color: white; /* Chữ trắng */
+    font-weight: bold;
+    font-family: "Arial", sans-serif;
+}
+
+table tr:nth-child(even) {
+    background-color: #f8f9fa; /* Nền sáng dịu cho hàng xen kẽ */
+}
+
+table tr:hover {
+    background-color: #e9f5fc; /* Hiệu ứng hover xanh nhạt */
+}
+
+/* Form chỉnh sửa */
+fieldset {
+    border: 1px solid #cce7f5;
+    padding: 20px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    background-color: #f7fcfe; /* Xanh trắng dịu */
+}
+
+fieldset legend {
+    font-size: 18px;
+    font-weight: bold;
+    color: #5fa9f7; /* Xanh dịu */
+    font-family: "Verdana", sans-serif;
+}
+
+/* Input và textarea */
+input[type="text"], input[type="email"], select, textarea {
+    border: 1px solid #87ceeb; /* Viền xanh nhạt */
+    background-color: #f0f8ff; /* Nền xanh nhạt dịu */
+    padding: 10px;
+    font-family: "Arial", sans-serif;
+}
+
+input:focus, textarea:focus, select:focus {
+    border-color: #4682b4; /* Viền xanh khi focus */
+    background-color: #ffffff; /* Nền trắng hơn khi focus */
+    outline: none;
+}
+
+/* Nút lưu */
+input[type="submit"] {
+    background-color: #87ceeb; /* Xanh dịu */
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-family: "Arial", sans-serif;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 15px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+input[type="submit"]:hover {
+    background-color: #4682b4; /* Xanh đậm hơn khi hover */
+    transform: scale(1.03);
+}

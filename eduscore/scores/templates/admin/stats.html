@@ -1,0 +1,106 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+<h1>Thống Kê Theo Lớp</h1>
+
+<!-- Form chọn lớp -->
+<form method="get" action="" style="margin-bottom: 20px;">
+    <label for="class_select">Chọn lớp:</label>
+    <select id="class_select" name="class" onchange="this.form.submit()">
+        <option value="">Tất cả các lớp</option>
+        {% for cls in all_classes %}
+        <option value="{{ cls.id }}" {% if selected_class_id == cls.id %}selected{% endif %}>
+            {{ cls.name }}
+        </option>
+        {% endfor %}
+    </select>
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th>Lớp</th>
+            <th>Tổng Điểm</th>
+            <th>Điểm Trung Bình</th>
+            <th>Số Lượng Sinh Viên</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for stat in stats_by_class %}
+        <tr>
+            <td>{{ stat.student_class__name }}</td>
+            <td>{{ stat.total_score }}</td>
+            <td>{{ stat.avg_score }}</td>
+            <td>{{ stat.student_count }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h1>Phân Loại Theo Lớp</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Lớp</th>
+            <th>Xuất Sắc</th>
+            <th>Giỏi</th>
+            <th>Khá</th>
+            <th>Trung Bình</th>
+            <th>Yếu</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for cls in classification %}
+        <tr>
+            <td>{{ cls.student_class__name }}</td>
+            <td>{{ cls.excellent }}</td>
+            <td>{{ cls.good }}</td>
+            <td>{{ cls.average }}</td>
+            <td>{{ cls.poor }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="/admin/export-csv/" class="button">Xuất CSV</a>
+<a href="/admin/export-pdf/" class="button">Xuất PDF</a>
+
+<h1>Thống Kê Chung (Điểm Trung Bình Theo Lớp)</h1>
+<div style="width: 60%">
+    <canvas id="myChart"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    let data = [];
+    let labels = [];
+
+    {% for cls in stats_by_class %}
+        labels.push('{{ cls.student_class__name }}');
+        data.push({{ cls.avg_score }});
+    {% endfor %}
+
+    window.onload = function() {
+        const ctx = document.getElementById('myChart');
+        new Chart(ctx, {
+            type: 'bar',  // Loại biểu đồ là thanh (bar)
+            data: {
+                labels: labels,  // Nhãn là tên lớp
+                datasets: [{
+                    label: 'Điểm Trung Bình Của Các Lớp',
+                    data: data,  // Dữ liệu là điểm trung bình của lớp
+                    borderWidth: 1,
+                    backgroundColor: ['red', 'green', 'blue', 'yellow', 'purple']
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true  // Đảm bảo trục Y bắt đầu từ 0
+                    }
+                }
+            }
+        });
+    };
+</script>
+{% endblock %}
